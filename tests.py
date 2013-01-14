@@ -57,18 +57,19 @@ test_requests = [
     '0 0.0.0.0:1234 "jesus" login myusername mypassword',
     '0 0.0.0.0:1234 "jesus" time arcaon pornstar-slopin',
     '0 0.0.0.0:1234 "jesus" time cpm arcaon pornstar-slopin',
+    '0 0.0.0.0:1234 "jesus" topspeed 13vast vq3.3 show',
 
 ]
 
 
 
 def test_extract_physic_mode():
-    assert extract_physic_mode('cpm') == {'physic': 1, 'mode': -1}
-    assert extract_physic_mode('vq3') == {'physic': 0, 'mode': -1}
-    assert extract_physic_mode('vq3.-1') == {'physic': 0, 'mode': -1}
-    assert extract_physic_mode('vq3.2') == {'physic': 0, 'mode': 2}
-    assert extract_physic_mode('vq3.3') == {'physic': 0, 'mode': 3}
-    assert extract_physic_mode('cpm.3') == {'physic': 1, 'mode': 3}
+    assert extract_physic_mode('cpm') == ('cpm', -1)
+    assert extract_physic_mode('vq3') == ('vq3', -1)
+    assert extract_physic_mode('vq3.-1') == ('vq3', -1)
+    assert extract_physic_mode('vq3.2') == ('vq3', 2)
+    assert extract_physic_mode('vq3.3') == ('vq3', 3)
+    assert extract_physic_mode('cpm.3') == ('cpm', 3)
 
 import commands
 
